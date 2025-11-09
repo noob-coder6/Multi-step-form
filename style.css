@@ -1,0 +1,548 @@
+/* ------------------- */
+/* Custom Properties   */
+/* ------------------- */
+:root {
+  /* Colors */
+  --clr-primary-marine-blue: hsl(213, 96%, 18%);
+  --clr-primary-purplish-blue: hsl(243, 100%, 62%);
+  --clr-primary-pastel-blue: hsl(228, 100%, 84%);
+  --clr-primary-light-blue: hsl(206, 94%, 87%);
+  --clr-primary-strawberry-red: hsl(354, 84%, 57%);
+
+  --clr-neutral-cool-gray: hsl(231, 11%, 63%);
+  --clr-neutral-light-gray: hsl(229, 24%, 87%);
+  --clr-neutral-magnolia: hsl(217, 100%, 97%);
+  --clr-neutral-alabaster: hsl(231, 100%, 99%);
+  --clr-neutral-white: hsl(0, 0%, 100%);
+
+  /* Font */
+  --ff-primary: 'Ubuntu', sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, h1, p, ol {
+  margin: 0;
+}
+
+body {
+  font-family: var(--ff-primary);
+  background-color: var(--clr-neutral-magnolia);
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: var(--clr-primary-marine-blue);
+  font-weight: var(--fw-bold);
+}
+
+p {
+  color: var(--clr-neutral-cool-gray);
+  line-height: 1.6;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* ------------------- */
+/* Main Layout         */
+/* ------------------- */
+.form-container {
+  width: 100%;
+  max-width: 940px;
+  background-color: var(--clr-neutral-white);
+}
+
+.sidebar {
+  background-image: url('./assets/images/bg-sidebar-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 172px;
+  padding-top: 2rem;
+}
+
+.steps {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.step__indicator {
+  width: 33px;
+  height: 33px;
+  border: 1px solid var(--clr-neutral-white);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  color: var(--clr-neutral-white);
+  font-weight: var(--fw-bold);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.step__indicator.active {
+  background-color: var(--clr-primary-light-blue);
+  color: var(--clr-primary-marine-blue);
+  border-color: var(--clr-primary-light-blue);
+}
+
+.step__label {
+  display: none;
+}
+
+.form-content {
+  background-color: var(--clr-neutral-white);
+  margin: -4.5rem 1rem 0;
+  padding: 2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  position: relative;
+  min-height: 375px;
+}
+
+/* ------------------- */
+/* Form Steps          */
+/* ------------------- */
+.step-title {
+  margin-bottom: 0.75rem;
+}
+
+.step-description {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: var(--clr-primary-marine-blue);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--clr-neutral-light-gray);
+  border-radius: 5px;
+  font-weight: var(--fw-medium);
+  color: var(--clr-primary-marine-blue);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--clr-primary-purplish-blue);
+}
+
+.form-group input::placeholder {
+  color: var(--clr-neutral-cool-gray);
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group .error-message {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--clr-primary-strawberry-red);
+    font-size: 0.875rem;
+    font-weight: var(--fw-bold);
+    display: none;
+}
+
+.form-group.error input {
+    border-color: var(--clr-primary-strawberry-red);
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+/* Step 2: Plan Selection */
+.plan-options {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-option input[type="radio"] {
+  display: none;
+}
+
+.plan-option label {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--clr-neutral-light-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.plan-option label:hover {
+  border-color: var(--clr-primary-purplish-blue);
+}
+
+.plan-option input:checked + label {
+  border-color: var(--clr-primary-purplish-blue);
+  background-color: var(--clr-neutral-magnolia);
+}
+
+.plan-name {
+  color: var(--clr-primary-marine-blue);
+  font-weight: var(--fw-bold);
+  display: block;
+}
+
+.plan-price {
+  color: var(--clr-neutral-cool-gray);
+}
+
+.plan-bonus {
+    color: var(--clr-primary-marine-blue);
+    font-size: 0.8rem;
+    font-weight: var(--fw-medium);
+}
+
+.billing-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--clr-neutral-magnolia);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.toggle-label {
+  font-weight: var(--fw-medium);
+  color: var(--clr-neutral-cool-gray);
+  transition: color 0.2s;
+}
+
+.toggle-label.active {
+  color: var(--clr-primary-marine-blue);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--clr-primary-marine-blue);
+  border-radius: 20px;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Step 3: Add-ons */
+.addon-options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.addon-option input[type="checkbox"] {
+  display: none;
+}
+
+.addon-option label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--clr-neutral-light-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.addon-option label::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--clr-neutral-light-gray);
+  border-radius: 4px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.addon-option input:checked + label::before {
+  background-color: var(--clr-primary-purplish-blue);
+  border-color: var(--clr-primary-purplish-blue);
+  background-image: url('./assets/images/icon-checkmark.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.addon-option input:checked + label {
+  border-color: var(--clr-primary-purplish-blue);
+  background-color: var(--clr-neutral-magnolia);
+}
+
+.addon-details {
+  flex-grow: 1;
+}
+
+.addon-name {
+  color: var(--clr-primary-marine-blue);
+  font-weight: var(--fw-medium);
+  display: block;
+}
+
+.addon-description {
+  color: var(--clr-neutral-cool-gray);
+  font-size: 0.875rem;
+}
+
+.addon-price {
+  color: var(--clr-primary-purplish-blue);
+  font-size: 0.875rem;
+}
+
+/* Step 4: Summary */
+.summary {
+  background-color: var(--clr-neutral-magnolia);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.summary-plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.summary-plan-name {
+  color: var(--clr-primary-marine-blue);
+  font-weight: var(--fw-medium);
+}
+
+.change-plan-btn {
+  background: none;
+  color: var(--clr-neutral-cool-gray);
+  text-decoration: underline;
+  font-size: 0.875rem;
+  padding: 0;
+}
+
+.summary-plan-price {
+  color: var(--clr-primary-marine-blue);
+  font-weight: var(--fw-bold);
+}
+
+.summary hr {
+  border: none;
+  border-top: 1px solid var(--clr-neutral-light-gray);
+  margin-bottom: 1rem;
+}
+
+.summary-addon {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.summary-addon-name {
+  color: var(--clr-neutral-cool-gray);
+  font-size: 0.875rem;
+}
+
+.summary-addon-price {
+  color: var(--clr-primary-marine-blue);
+  font-size: 0.875rem;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem 0;
+}
+
+.total-price {
+  color: var(--clr-primary-purplish-blue);
+  font-weight: var(--fw-bold);
+  font-size: 1.125rem;
+}
+
+/* Step 5: Thank You */
+.thank-you-step {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.thank-you-step img {
+  margin-bottom: 1.5rem;
+}
+
+.thank-you-step .step-description {
+    padding: 0 0.5rem;
+}
+
+/* ------------------- */
+/* Navigation          */
+/* ------------------- */
+.navigation-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--clr-neutral-white);
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-back {
+  color: var(--clr-neutral-cool-gray);
+  font-weight: var(--fw-medium);
+  background: none;
+}
+
+.btn-next, .btn-confirm {
+  background-color: var(--clr-primary-marine-blue);
+  color: var(--clr-neutral-white);
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.btn-confirm {
+  background-color: var(--clr-primary-purplish-blue);
+}
+
+/* ------------------- */
+/* Media Queries       */
+/* ------------------- */
+@media (min-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .form-container {
+    display: grid;
+    grid-template-columns: 274px 1fr;
+    gap: 6.25rem;
+    padding: 1rem;
+    border-radius: 15px;
+    height: 600px;
+  }
+
+  .sidebar {
+    background-image: url('./assets/images/bg-sidebar-desktop.svg');
+    height: 100%;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: flex-start;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .step__label {
+    display: block;
+    text-transform: uppercase;
+  }
+
+  .step__number {
+    font-size: 0.75rem;
+    color: var(--clr-neutral-light-gray);
+  }
+
+  .step__title {
+    font-size: 0.875rem;
+    color: var(--clr-neutral-white);
+    font-weight: var(--fw-bold);
+    letter-spacing: 1px;
+  }
+
+  .form-content {
+    margin: 0;
+    padding: 2.5rem 0 1rem;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .plan-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .plan-option label {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 180px;
+  }
+
+  .navigation-buttons {
+    position: static;
+    padding: 0;
+    margin-top: 5rem;
+  }
+}
